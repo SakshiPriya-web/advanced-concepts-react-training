@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tailwind Transitions & Animation Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Extend Tailwind config for custom animation
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            fadeIn: 'fadeIn 1s ease-in-out forwards',
+            slideIn: 'slideIn 0.8s ease-out forwards'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideIn: {
+              '0%': { transform: 'translateX(-100%)', opacity: '0' },
+              '100%': { transform: 'translateX(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen space-y-10">
+
+  <!-- Button: using transition-property, duration, timing-function -->
+  <button
+    class="px-6 py-3 bg-blue-500 text-white rounded-lg shadow-lg
+           transition-colors transition-transform duration-300 ease-in-out
+           hover:bg-blue-600 hover:scale-110"
+  >
+    Hover Me
+  </button>
+
+  <!-- Card: rotate + scale using transition-property and duration + delay -->
+  <div
+    class="w-64 h-40 bg-white rounded-xl shadow-lg p-6 transform
+           transition duration-500 ease-out delay-100
+           hover:rotate-3 hover:scale-105"
+  >
+    <h2 class="text-lg font-bold text-gray-800">Tailwind Card</h2>
+    <p class="text-gray-600 mt-2">Rotates & scales on hover with delay</p>
+  </div>
+
+  <!-- Fade-in on load: custom animation fadeIn -->
+  <div class="p-6 bg-green-400 text-white rounded-lg shadow-md animate-fadeIn">
+    Fading In Box
+  </div>
+
+  <!-- Slide in from left on load: custom animation slideIn -->
+  <div class="p-6 bg-yellow-500 text-gray-900 rounded-lg shadow-md animate-slideIn">
+    Slide-in Box
+  </div>
+
+  <!-- Spinner: built-in animate-spin -->
+  <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+
+</body>
+</html>
